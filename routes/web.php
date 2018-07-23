@@ -20,3 +20,13 @@ Route::group(['prefix' => 'admin'], function()
 Route::resource('posts', 'Posts\PostController')->only([
     'index', 'show'
 ]);
+
+
+Route::post('posts/{post}/like', 'Posts\LikeController@store')
+    ->middleware('auth')
+    ->name('posts.like');
+
+
+Route::post('posts/{post}/views', 'Posts\ViewController@store')
+    ->middleware('auth')
+    ->name('posts.view');

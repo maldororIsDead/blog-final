@@ -5,10 +5,12 @@ namespace App;
 use App\Notifications\Auth\VerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     protected $fillable = [
         'name', 'email', 'password',
@@ -28,5 +30,25 @@ class User extends Authenticatable
     public function sendEmailVerificationNotification(): void
     {
         $this->notify(new VerifyEmail);
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function like(Post $post)
+    {
+        $this->likes()->create(['post_id' => $post->id]);
+    }
+
+    public function unlike(Post $post)
+    {
+        $this->likes()->where('post_id', $post->id)->delete();
+    }
+
+    public function views(): HasMany
+    {
+        return $this->hasMany(View::class);
     }
 }

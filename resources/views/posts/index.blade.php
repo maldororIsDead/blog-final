@@ -10,13 +10,21 @@
                             <h3><a href="{{ route('posts.show', $post->id)}}">{{ $post->title }}</a></h3>
                         </div>
                         <a href="{{ route('posts.show', $post->id) }}">
-                            <img class="card-img-top" src="#" alt="Card image cap"></a>
+                            <img class="card-img-top" src="{{ $post->getFirstMediaUrl('images') }}"
+                                 alt="Card image cap"></a>
                         <div class="card-body">
                             <p class="card-text py-2">{{ $post->summary }}</p>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
-                            <i class="fa fa-thumbs-o-up" style="font-size: 1.5rem" aria-hidden="true"> 0</i>
-                            <i class="fa fa-eye" style="font-size: 1.5rem" aria-hidden="true"> 0</i>
+                            @hasrole('user')
+                            <post-likes is_liked="{{ $post->isLikedBy(auth()->user()) }}" post_id="{{ $post->id }}"
+                                        likes_count="{{ $post->likes->count() }}"></post-likes>
+                            @else
+                                <i class="fa fa-thumbs-o-up" style="font-size: 1.5rem"
+                                   aria-hidden="true">{{ $post->likes->count() }}</i>
+                                @endhasrole
+                                <i class="fa fa-eye" style="font-size: 1.5rem"
+                                   aria-hidden="true"> {{ $post->views->count() }}</i>
                         </div>
                     </div>
                 </div>
