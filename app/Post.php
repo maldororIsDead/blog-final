@@ -45,11 +45,11 @@ class Post extends Model implements HasMedia
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 
-    public function viewPost(string $ip)
+    public function viewPost(string $ip): void
     {
         $isViewed = $this->views()->where('user_ip', $ip)->exists();
 
-        if (! $isViewed) {
+        if (!$isViewed) {
             $this->views()->create(['user_id' => auth()->id(), 'user_ip' => $ip]);
         }
     }

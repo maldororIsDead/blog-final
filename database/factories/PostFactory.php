@@ -6,8 +6,8 @@ use App\Post;
 $factory->define(Post::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
-        'summary' => $faker->paragraphs(1, true),
-        'body' => $faker->paragraphs(7, true),
+        'summary' => $faker->paragraph,
+        'body' => $faker->text(500),
         'created_at' => $faker->dateTime
     ];
 });

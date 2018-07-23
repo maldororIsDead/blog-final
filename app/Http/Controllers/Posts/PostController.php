@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Posts;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Post;
+use App\Http\Controllers\Controller;
+
 
 class PostController extends Controller
 {
@@ -19,5 +19,4 @@ class PostController extends Controller
     {
         return view('posts.show', compact('post'));
     }
-
 }

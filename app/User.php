@@ -37,12 +37,12 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
-    public function like(Post $post)
+    public function like(Post $post): void
     {
         $this->likes()->create(['post_id' => $post->id]);
     }
 
-    public function unlike(Post $post)
+    public function unlike(Post $post): void
     {
         $this->likes()->where('post_id', $post->id)->delete();
     }

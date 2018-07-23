@@ -34,10 +34,5 @@
                     })
             }
         }
-
     }
 </script>
-
-<style scoped>
-
-</style>

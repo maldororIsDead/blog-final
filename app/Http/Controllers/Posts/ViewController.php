@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Posts;
 
 use App\Post;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
+
 
 class ViewController extends Controller
 {
