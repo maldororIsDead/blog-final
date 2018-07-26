@@ -6,7 +6,7 @@
                     <div class="form-group">
                         <label for="inputTitle">Title</label>
                         <input type="text" class="form-control" id="inputTitle" name="title"
-                               placeholder="Введите ваше имя" v-model="post.title">
+                               placeholder="Enter your post title" v-model="post.title">
                     </div>
                     <div class="form-group">
                         <label for="inputSummary">Summary</label>
@@ -19,7 +19,7 @@
                                   rows="5" v-model="post.body"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="inputFile">Загрузить файл</label>
+                        <label for="inputFile">Upload file</label>
                         <input type="file" @change="addFile" id="inputFile" name="thumbnail"/>
                     </div>
                     <div class="form-group">

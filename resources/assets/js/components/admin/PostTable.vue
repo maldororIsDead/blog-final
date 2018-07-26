@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col justify-content-centered">
             <button class="btn btn-default" @click="fetchPosts(pagination.prev_page)"
                     :disabled="!pagination.prev_page">prev
             </button>
@@ -85,13 +85,12 @@
                     })
             },
             createPagination(response) {
-                let pagination = {
+                this.pagination = {
                     current_page: response.data.meta.current_page,
                     total: response.data.meta.last_page,
                     next_page: response.data.links.next,
                     prev_page: response.data.links.prev,
                 };
-                this.pagination = pagination;
             }
         }
     }

@@ -19,7 +19,7 @@
                                   rows="5" v-model="post.body"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="inputFile">Загрузить файл</label>
+                        <label for="inputFile">Upload file</label>
                         <input type="file" @change="addFile" id="inputFile" name="thumbnail"/>
                     </div>
                     <div class="form-group">

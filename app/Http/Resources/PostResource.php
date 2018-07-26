@@ -13,7 +13,7 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'summary' => $this->summary,
-            'body' => str_limit($this->body),
+            'body' => str_limit($this->body, 200),
             'thumbnail' => $this->getFirstMediaUrl('images'),
         ];
     }
