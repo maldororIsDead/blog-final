@@ -8,11 +8,11 @@ Route::get('email/verify', 'Auth\VerificationController@verify')
     ->middleware('signed')
     ->name('email.verify');
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('posts', 'Admin\PostController');
-});
+/*Route::group(['prefix' => 'admin'], function () {
+    Route::get('posts', 'Admin\AdminController@index');
+});*/
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('admin/posts/', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'Posts\PostController')->only([
     'index', 'show'

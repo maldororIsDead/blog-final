@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Post;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBlogPost;
 use App\Http\Requests\UpdateBlogPost;
+use App\Http\Resources\PostResource;
+
 
 class PostController extends Controller
 {
 
     public function index()
     {
-        $posts = Post::paginate();
-
-        return view('admin.index', compact('posts'));
+        return PostResource::collection(Post::paginate());
     }
 
-    public function create()
+    public function show(Post $post)
     {
-        return view('admin.create');
+        return new PostResource($post);
     }
 
     public function store(StoreBlogPost $request)
@@ -29,12 +28,7 @@ class PostController extends Controller
 
         $post->addMediaFromRequest('thumbnail')->toMediaCollection('images');
 
-        return redirect()->route('posts.index');
-    }
-
-    public function edit(Post $post)
-    {
-        return view('admin.edit', compact('post'));
+        return new PostResource($post);
     }
 
     public function update(UpdateBlogPost $request, Post $post)
@@ -46,13 +40,13 @@ class PostController extends Controller
             $post->addMediaFromRequest('thumbnail')->toMediaCollection('images');
         }
 
-        return redirect()->route('posts.show', compact('post'));
+        return new PostResource($post);
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
 
-        return redirect()->route('posts.index');
+        return PostResource::collection(Post::all());
     }
 }
